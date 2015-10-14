@@ -1,0 +1,111 @@
+<html>
+	<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<head>
+</head>
+
+<body>
+	<script>
+		// Options
+		var currentFormat = "Group";
+		var formatTypes = ["Alphabetical", "Group", "Line Length"];
+		var defaultGroupOrders = ["Positioing", "Display", "Color", "Text", "Animation", "Other"];
+		var options = ["spaceBetweenGroups" : false, "indentSimilarBlocks": false, "groupComments": false];
+	
+		// Helper for comparing types
+		Object.prototype.toType = function() {
+			return ({}).toString.call(this).match(/\s([a-zA-Z]+)/)[1].toLowerCase()
+		}
+	
+		function Page(blocks){
+			this.blocks = blocks;
+		};
+			// Organizes the entirity of the page
+			Page.prototype.organize = function(){
+				this.rearrangeBlocks();
+				this.organizeBlocks();
+			};
+			
+			// Rearranges the blocks according to settings
+			Page.prototype.rearrangeBlocks = function(){
+				
+			};
+			
+			// Rearranges the props
+			Page.prototype.rearrangeRules = function(){
+			
+			};
+			
+			// Checks if the css file is valid (based on options)
+			Page.prototype.isValid = function(){
+				var numOfBlocks = this.blocks.length;
+				for(var i = 0; i < numOfBlocks; i++){
+					if(this.blocks[i] instanceof Block == false){
+						return false;
+					}
+				}
+				return true;
+			}
+	
+		// Block Object
+		function Block(props){
+			this.props = props;
+		};
+		
+			Block.prototype.clearRules = function(){
+				var numOfProps = this.props.length;
+				this.props = [];
+				console.log("A number of " + numOfProps + " Prop(s) have been cleared.");
+			};
+			
+			Block.prototype.setRules = function(props){
+				this.props = props;
+			};
+		
+		// The Prop Object
+		function Prop(name, value){
+			if(name){
+				this.name = name;
+			}
+			this.value = value;
+		}
+		
+			Prop.prototype.setValue = function(value){
+				this.value = value;
+			}
+	
+		// Organizes every page based on the current format
+		function OrganizePages(pages){
+			var numOfPages = pages.length;
+			for(var i = 0; i < numOfPages; i++){
+				if(!pages[i] instanceof Page){
+					return;
+				}
+			}
+		}
+		
+		function changeFormat(format){
+			if(format in formatTypes){
+				currentFormat = format;
+			}
+		}
+		
+		function changeOption(option, value){
+			if(option in options && value.toType() == options[option].toType()){
+				options[option] = value;
+			}
+		}
+	
+		// Starting the script
+		var currentPage = NaN;
+		
+		// TEST
+		//
+		// Testing some stuff
+		var testBlock = new Block([new Prop("width", 100)]);
+		currentPage = new Page([testBlock]);
+		testBlock.clearRules();
+		console.log(currentPage.isValid());
+		// End
+	</script>
+</body>
+</html>

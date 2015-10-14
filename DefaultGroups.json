@@ -1,0 +1,25 @@
+{
+	"position": [
+		"position", "z-index", "top", "bottom", "right", "left"
+	]
+	
+	"display": {
+		"width", "height", "display", "", "margin", "padding", "border"
+	}
+	
+	"color": {
+		"color", "background"
+	}
+	
+	"text": {
+		"font-family", "font-size", "text-algin", "line-height:"
+	}
+	
+	"animation": {
+		
+	}
+	
+	"other": {
+		"cursor"
+	}
+}
