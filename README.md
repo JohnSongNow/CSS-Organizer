@@ -4,6 +4,9 @@ CSS-Organizer is fully customizable with a wide variety of options such as inden
 
 Customization is done via a text file called **Options.txt** which can be generated and saved. For a more detailed guide on how to use **Options.txt** look below.
 
+### Javascript (Recommended)
+The Javascript version of this is the recommended version, it acts as a seperate script that can easily be intergrated into any website, while it cannot be run locally it is used to build CSS Organizer the following is a good example of this.
+
 For an example of intergrating visit [CSS Organizer](johnsong.science/projects/css_organizer "Organizer Example")
 
 ### Python
