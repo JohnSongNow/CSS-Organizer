@@ -10,14 +10,17 @@ class Block():
         self._props = props
         self._name = name
 
-
     def changeName(self, name):
         self._name = name
-
 
     def changeProps(self, props):
         self._props = props
 
+    def changeName(self, name):
+        self._name = name
+
+    def changeProps(self, props):
+        self._props = props
 
     def removePropByName(self, name):
         '''
@@ -30,7 +33,6 @@ class Block():
         if(removed_prop == None):
             return
         self._props.remove(removed_prop)
-
 
     def containsProperty(self, name):
         """
@@ -46,7 +48,6 @@ class Block():
         # Returns the first element
         return new_list[0]
 
-
     def addProp(self, prop):
         '''
         Adds a prop to list, if the prop exists replace
@@ -60,7 +61,6 @@ class Block():
         else:
             # Swaps the values
             current_prop.setValue(prop.getValue())
-
 
     def __str__(self):
         """

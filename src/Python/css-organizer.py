@@ -17,6 +17,7 @@ def loadOptions():
     """
     return
 
+
 test_block = Block("Test Block")
 test_prop = Property("Test", 10)
 test_prop2 = Property("Test", 25)
