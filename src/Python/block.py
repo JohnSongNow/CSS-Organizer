@@ -5,20 +5,18 @@ class Block():
     the block does not check if the props within the CSS is valid and must be explicatly
     called.
     """
-    
+
+
     def __init__(self, name, props=[]):
         self._props = props
         self._name = name
-    
-    
+
     def changeName(self, name):
         self._name = name
-    
-    
+
     def changeProps(self, props):
         self._props = props
-        
-        
+
     def removePropByName(self, name):
         '''
         Removes the property within the list
@@ -30,8 +28,7 @@ class Block():
         if(removed_prop == None):
             return
         self._props.remove(removed_prop)
-            
-        
+
     def containsProperty(self, name):
         """
         Checks if the block contains the property with
@@ -45,8 +42,7 @@ class Block():
             return None
         # Returns the first element
         return new_list[0]
-    
-    
+
     def addProp(self, prop):
         '''
         Adds a prop to list, if the prop exists replace
@@ -61,7 +57,6 @@ class Block():
             # Swaps the values
             current_prop.setValue(prop.getValue())
 
-    
     def __str__(self):
         """
         Returns the block as a string
