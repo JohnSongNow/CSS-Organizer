@@ -1,5 +1,6 @@
 from block import *
 
+
 class Page():
     """
     A Page class used to store multiple blocks to be used by the
@@ -13,7 +14,10 @@ class Page():
     def __init__(self, blocks=[]):
         self._blocks = blocks
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> refs/remotes/origin/master
     def __str__(self):
         """
         """
@@ -21,7 +25,11 @@ class Page():
     def organize(self):
         """
         """
+
     def isValid(self):
         """
         """
+<<<<<<< HEAD
+=======
 
+>>>>>>> refs/remotes/origin/master
