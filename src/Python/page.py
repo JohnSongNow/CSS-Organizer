@@ -14,10 +14,6 @@ class Page():
     def __init__(self, blocks=[]):
         self._blocks = blocks
 
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/master
     def __str__(self):
         """
         """
@@ -29,7 +25,4 @@ class Page():
     def isValid(self):
         """
         """
-<<<<<<< HEAD
-=======
 
->>>>>>> refs/remotes/origin/master
