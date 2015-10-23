@@ -1,7 +1,6 @@
-from page import *
-from block import *
 from property import *
-
+from block import *
+from page import *
 
 OPTIONS = dict()
 
@@ -9,7 +8,10 @@ OPTIONS = dict()
 def importCssFile():
     return
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
 def loadOptions():
     """
     Loads the options from the text file into

@@ -6,29 +6,48 @@ class Block():
     called.
     """
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/master
     def __init__(self, name, props=[]):
         self._props = props
         self._name = name
 
+<<<<<<< HEAD
     def changeName(self, name):
         self._name = name
 
     def changeProps(self, props):
         self._props = props
 
+=======
+
+    def changeName(self, name):
+        self._name = name
+
+
+    def changeProps(self, props):
+        self._props = props
+
+
+>>>>>>> refs/remotes/origin/master
     def removePropByName(self, name):
         '''
         Removes the property within the list
         '''
         # Gets ths removed propr, None if not present
         removed_prop = self.containsProperty(name)
-        
+
         # Removing the prop
         if(removed_prop == None):
             return
         self._props.remove(removed_prop)
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
     def containsProperty(self, name):
         """
         Checks if the block contains the property with
@@ -36,13 +55,17 @@ class Block():
         """
         # New list of only the property with the wanted name
         new_list = [x for x in self._props if x.getName() == name]
-        
+
         # If nothing fits the description
         if(len(new_list) == 0):
             return None
         # Returns the first element
         return new_list[0]
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
     def addProp(self, prop):
         '''
         Adds a prop to list, if the prop exists replace
@@ -57,6 +80,10 @@ class Block():
             # Swaps the values
             current_prop.setValue(prop.getValue())
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> refs/remotes/origin/master
     def __str__(self):
         """
         Returns the block as a string
