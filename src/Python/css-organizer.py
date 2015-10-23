@@ -7,16 +7,16 @@ OPTIONS = dict()
 
 
 def importCssFile():
-	return
-	
+    return
+    
 def loadOptions():
-	"""
-	Loads the options from the text file into
-	the options DICT. Note that if no options file
-	is found a text file will be created in the dir
-	of this file.
-	"""
-	return
+    """
+    Loads the options from the text file into
+    the options DICT. Note that if no options file
+    is found a text file will be created in the dir
+    of this file.
+    """
+    return
 
 test_block = Block("Test Block")
 test_prop = Property("Test", 10)
