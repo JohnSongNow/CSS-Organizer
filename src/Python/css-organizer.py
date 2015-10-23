@@ -1,14 +1,13 @@
-from page import *
-from block import *
 from property import *
-
+from block import *
+from page import *
 
 OPTIONS = dict()
 
 
 def importCssFile():
     return
-    
+
 def loadOptions():
     """
     Loads the options from the text file into
