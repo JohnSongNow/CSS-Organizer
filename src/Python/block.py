@@ -1,40 +1,34 @@
 class Block():
     """
     A single CSS Block in CSS-Organizer, contains the name and type of block
-    that it is as well as contains a list of all CSS properties in the block. By default
-    the block does not check if the props within the CSS is valid and must be explicatly
-    called.
+    that it is as well as contains a list of all CSS properties in the block.
+    By default the block does not check if the props within the CSS is valid
+    and must be explicatly called.
     """
 
     def __init__(self, name, props=[]):
         self._props = props
         self._name = name
 
-    def changeName(self, name):
-        self._name = name
-
-    def changeProps(self, props):
+    def setProps(self, props):
         self._props = props
 
-    def changeName(self, name):
+    def setName(self, name):
         self._name = name
 
-    def changeProps(self, props):
-        self._props = props
-
-    def removePropByName(self, name):
+    def remove_prop_by_name(self, name):
         '''
         Removes the property within the list
         '''
         # Gets ths removed propr, None if not present
-        removed_prop = self.containsProperty(name)
+        removed_prop = self.contains_property(name)
 
         # Removing the prop
         if(removed_prop == None):
             return
         self._props.remove(removed_prop)
 
-    def containsProperty(self, name):
+    def contains_property(self, name):
         """
         Checks if the block contains the property with
         the following name. If it does return the property
@@ -48,13 +42,13 @@ class Block():
         # Returns the first element
         return new_list[0]
 
-    def addProp(self, prop):
+    def add_prop(self, prop):
         '''
         Adds a prop to list, if the prop exists replace
         the existing props value
         '''
         # Checking if the prop exists
-        current_prop = self.containsProperty(prop.getName())
+        current_prop = self.contains_property(prop.getName())
         # If Not Add a new Prop
         if(current_prop == None):
             self._props.append(prop)
@@ -67,4 +61,11 @@ class Block():
         Returns the block as a string
         with it's name and properties.
         """
-        return "Block Name is : " + self._name + " : " + str(self._props)
+        return "Block Name is " + self._name + " : " + str(self._props)
+
+    def __repr__(self):
+        '''
+        Returns the block as a string
+        with it's name and properties.
+        '''
+        return str(self)

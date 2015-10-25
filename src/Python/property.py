@@ -13,9 +13,10 @@ class Property():
         _value: The value of the property
     """
 
-    def __init__(self, name, value, type="Misc"):
-        self.changeProperty(name, value)
-        self._type = type
+    def __init__(self, name, value, this_type="Misc"):
+        self._name = name
+        self._value = value
+        self._type = this_type
 
     def getName(self):
         return self._name
@@ -28,11 +29,10 @@ class Property():
 
     def changeProperty(self, name, value):
         """
-        Changes the property of the
+        Changes the name and value of the property.
         """
         self._name = name
         self._value = value
-        self.changeType()
 
     def isValid(self):
         """
@@ -65,7 +65,7 @@ class Property():
         Returns the a str representing the property
         with it's name and value respentively.
         """
-        return '[' + str(self._name) + ', ' + str(self._value) + ']'
+        return '' + str(self._name) + ':' + str(self._value) + ''
 
     def __repr__(self):
         """
