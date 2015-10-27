@@ -7,34 +7,33 @@ OPTIONS = dict()
 
 FILE_LIMIT = 25
 FILE_SIZE_LIMIT = 5000
-FILES = []
+PAGES = []
 
-def importCSSFiles(file_names, file_path=''):
+def importCSSPAGES(file_names, file_path='', reset=True):
     '''
-    Imports the CSS files in a directory into
-    the files list, note that the files are
+    ([Str], Str) -> NoneType
+    Imports the CSS PAGES in a directory into
+    the PAGES list, note that the PAGES are
     cleared before imported.
     '''
-    FILES = []
+    PAGES = []
 
-    # Reading and storing the lines in our array
+    # Reading and converting each file into a Page Object
     for file_name in file_names:
         try:
+            # Reading files
             with open(file_path + file_name + '.css') as f:
-                FILES.append(f.read().splitlines())
+                current_lines = f.read().splitlines()
+                # Changing to pages
+                PAGES.append(lines_to_page(file_name, current_lines))
                 f.close()
         except:
             print(file_name + ' does not exist')
-
-    print(FILES[0])
-    # Changing to pages
-    for x in range(len(FILES)):
-        FILES[x] = lines_to_page(FILES[x])
-    print(FILES[0])
+    print(PAGES[0])
     return
 
 
-def lines_to_page(lines):
+def lines_to_page(name, lines):
     '''
     Returns a page object of the following
     line-parsed CSS file, note that if the
@@ -42,7 +41,7 @@ def lines_to_page(lines):
     thrown.
     '''
     # Making the starting variables for the loop
-    new_page = Page()
+    new_page = Page(name)
     in_block = False
 
     try:
@@ -77,11 +76,23 @@ def lines_to_page(lines):
     return new_page
 
 
-def addCSSFile(file_names, file_part=''):
+def page_to_file(dir_location):
     '''
-    Adds a CSS file into the existing files list.
+    (Str) -> NoneType
+    Changes the page object back into a file and write it
+    into the directory
     '''
-    return
+    pass
+
+
+def addCSSFile(file_names, file_path=''):
+    '''
+    (Str, Str) -> NoneType
+    Adds a CSS file into the existing PAGES list.
+    Calls importCSSPages while not reseting our
+    current pages.
+    '''
+    importCSSPAGES(file_name, file_path, False)
 
 
 def loadOptions():
@@ -94,4 +105,4 @@ def loadOptions():
     return
 
 # Printing out the block
-importCSSFiles(['expected-test', 'initial-test'], 'test/')
+importCSSPAGES(['expected-test', 'initial-test'], 'test/')

@@ -12,7 +12,8 @@ class Page():
         _length: the number of blocks in the page
     """
 
-    def __init__(self, blocks=[]):
+    def __init__(self, name, blocks=[]):
+        self._name = name
         self._blocks = blocks
         self._length = len(blocks)
 
@@ -31,10 +32,20 @@ class Page():
         self._length += 1
 
 
-    def set_blocks(self, block):
+    def set_blocks(self, blocks):
         '''
-        Sets the block of the folowing keyboards
+        Sets the block of the following page.
+        Note that both blocks and length are
+        reset.
         '''
+        self._blocks = blocks
+        self._length = len(blocks)
+
+    def get_name(self):
+        '''
+        Returns the name of the page.
+        '''
+        return self._name
 
     def __str__(self):
         """
