@@ -95,14 +95,30 @@ def addCSSFile(file_names, file_path=''):
     importCSSPAGES(file_name, file_path, False)
 
 
-def loadOptions():
+def loadOptions(file_path):
     """
     Loads the options from the text file into
     the options DICT. Note that if no options file
     is found a text file will be created in the dir
     of this file.
     """
+    # Resetting out previous options
+    OPTIONS = dict()
+    current_lines = []
+    try:
+        # Reading files
+        with open(file_path + 'options.txt') as f:
+            current_lines = f.read().splitlines()
+            # Changing to pages
+            f.close()
+    except:
+        print('options.txt' + ' does not exist')
+
+    for line in current_lines:
+        lines = line.split(':')
+        OPTIONS[lines[0]] = lines[1]
     return
 
 # Printing out the block
 importCSSPAGES(['expected-test', 'initial-test'], 'test/')
+loadOptions('test/');
