@@ -23,7 +23,6 @@ class Page():
         '''
         return self._blocks
 
-
     def add_block(self, block):
         '''
         Adds the blocks to to the page.
@@ -49,15 +48,18 @@ class Page():
 
     def __str__(self):
         """
+        Returns a str representation of the page.
         """
-        return str(self._blocks)
+        return 'Page(' + self._name + ')' + str(self._blocks)
 
     def organize(self):
         """
         """
 
-    def is_Valid(self):
+    def is_valid(self):
         """
+        Checks if the current page and it's
+        blocks are valid.
         """
 
     def get_last_block(self):

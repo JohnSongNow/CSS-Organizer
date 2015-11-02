@@ -18,29 +18,29 @@ class Property():
         self._value = value
         self._type = this_type
 
-    def getName(self):
+    def get_name(self):
         return self._name
 
-    def getValue(self):
+    def get_value(self):
         return self._value
 
-    def setValue(self, value):
+    def set_value(self, value):
         self._value = value
 
-    def changeProperty(self, name, value):
+    def change_property(self, name, value):
         """
         Changes the name and value of the property.
         """
         self._name = name
         self._value = value
 
-    def isValid(self):
+    def is_valid(self):
         """
         Checks if the current value for the property
         is valid, iff the property is valid.
         """
 
-    def changeType(self):
+    def change_type(self):
         """
         Changes the type of the current property, by
         default thr type of property is Misc.
@@ -57,7 +57,7 @@ class Property():
         else:
             self._type = "Misc"
 
-    def getType(self):
+    def get_type(self):
         return
 
     def __str__(self):
