@@ -7,8 +7,8 @@ class Block():
     """
 
     def __init__(self, name, props=[]):
-        self._props = props
         self._name = name
+        self._props = props
 
     def set_props(self, props):
         self._props = props
@@ -33,7 +33,7 @@ class Block():
         Returns the a list of the given
         properties of the given block.
         '''
-        return self._blocks
+        return self._props
 
     def get_prop(self, name):
         '''
