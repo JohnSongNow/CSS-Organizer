@@ -12,7 +12,7 @@ class Page():
         _length: the number of blocks in the page
     """
 
-    def __init__(self, name, blocks=[]):
+    def __init__(self, name, blocks):
         self._name = name
         self._blocks = blocks
         self._length = len(blocks)

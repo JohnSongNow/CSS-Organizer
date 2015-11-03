@@ -23,7 +23,7 @@ def organize_files(file_names, file_path):
     # Importing the CSS Pages
     pages = import_CSS_files(file_names, file_path)
 
-    print(pages[0])
+    print(pages[1])
     # Exporting the CSS Pages
     # export_CSS_files(file_path, pages)
 
@@ -78,7 +78,7 @@ def lines_to_page(name, lines):
     thrown.
     '''
     # Making the starting variables for the loop
-    new_page = Page(name)
+    new_page = Page(name, [])
     in_block = False
 
     # Looping through the CSS lines
@@ -86,13 +86,14 @@ def lines_to_page(name, lines):
         # Replacing tabs
         line = line.lstrip()
 
+
         # Checking if we've started or ended a new block
         if('{' in line or '}' in line):
             in_block = not in_block
             # If we have a new block add it
             if(in_block):
                 line = line.replace('{', '')
-                new_page.add_block(Block(line[:]))
+                new_page.add_block(Block(line, []))
             else:
                 in_block = False
         # Empty line
