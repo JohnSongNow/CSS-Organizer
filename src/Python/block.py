@@ -6,7 +6,7 @@ class Block():
     and must be explicatly called.
     """
 
-    def __init__(self, name, props=[]):
+    def __init__(self, name, props):
         self._name = name
         self._props = props
 
