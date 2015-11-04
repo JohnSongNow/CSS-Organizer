@@ -70,6 +70,12 @@ class Block():
             # Swaps the values
             current_prop.set_value(prop.get_value())
 
+    def get_name(self):
+        '''
+        Returns the name of the following block.
+        '''
+        return self._name
+
     def __str__(self):
         """
         Returns the block as a string

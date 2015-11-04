@@ -23,9 +23,8 @@ def organize_files(file_names, file_path):
     # Importing the CSS Pages
     pages = import_CSS_files(file_names, file_path)
 
-    print(pages[1])
     # Exporting the CSS Pages
-    # export_CSS_files(file_path, pages)
+    export_CSS_files(file_path, pages)
 
 
 def import_CSS_files(file_names, file_path='', reset=True):
@@ -60,11 +59,13 @@ def export_CSS_files(dir_name, pages):
     for page in pages:
         try:
             # Writing the file
-            with open('export-test' + '.css', 'w') as f:
+            with open(dir_name + page.get_name() + '-finale'
+                      + '.css', 'w') as f:
                 for block in page.get_blocks():
-                    print(block)
+                    f.write(block.get_name() + "{ \n")
                     for prop in block.get_props():
-                        print(prop)
+                        f.write(prop.get_value() +  "\n")
+                    f.write("} \n")
                 f.close()
         except FileNotFoundError:
             print('Error exporting ' + page.get_name() + '.css')
