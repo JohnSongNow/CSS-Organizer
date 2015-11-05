@@ -56,19 +56,36 @@ def export_CSS_files(dir_name, pages):
     Transforms the current Page Objects into
     CSS files and exports them to a dir
     '''
+    # Used for indenting
+    tab_num = 0
+    tabs = ''
+
     for page in pages:
         try:
             # Writing the file
             with open(dir_name + page.get_name() + '-finale'
                       + '.css', 'w') as f:
+                # Writing each block
                 for block in page.get_blocks():
                     f.write(block.get_name() + "{ \n")
+
+                    # Writing each prop
                     for prop in block.get_props():
-                        f.write(prop.get_value() +  "\n")
+                        f.write('\t' + prop.get_value() +  '\n')
+
                     f.write("} \n")
+                    f.write("\n")
                 f.close()
         except FileNotFoundError:
             print('Error exporting ' + page.get_name() + '.css')
+
+
+def alter_tabs(tabs, step):
+    '''
+    '''
+
+
+    return result
 
 
 def lines_to_page(name, lines):
@@ -151,7 +168,7 @@ def load_options(file_path):
 
     for line in current_lines:
         lines = line.split(':')
-        OPTIONS[lines[0]] = lines[1]
+        options[lines[0]] = lines[1]
     return options
 
 organize_files(['expected-test', 'initial-test'], 'test/')
