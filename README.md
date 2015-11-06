@@ -42,3 +42,7 @@ By default CSS organizer organizes it by blocks as the following
 All these blocks are organized with a inner text file which is editable called default.txt, which takes into account how many blocks there and how specific properties within these blocks are organized. By default they are general convention such as **Width** before **Height** in the display block, all other unknown properties are sorted by alphabetical order.
 
 # Editing options.txt
+
+1. TABS:True
+2. ORDER-BY-NAME:True
+3. DYNAMIC-TABBING:True
