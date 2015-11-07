@@ -6,27 +6,22 @@ class Block():
     and must be explicatly called.
     """
 
-    def __init__(self, name, props):
-        self._name = name
+    def __init__(self, names, props):
+        self._names = names.split(' ')
         self._props = props
+
+    def set_names(self, names):
+        self._names = names
+
+    def get_names(self):
+        '''
+        Returns a list with the names of the block
+        in order
+        '''
+        return self._names
 
     def set_props(self, props):
         self._props = props
-
-    def set_name(self, name):
-        self._name = name
-
-    def remove_prop_by_name(self, name):
-        '''
-        Removes the property within the list
-        '''
-        # Gets ths removed propr, None if not present
-        removed_prop = self.contains_prop(name)
-
-        # Removing the prop
-        if(removed_prop == None):
-            return
-        self._props.remove(removed_prop)
 
     def get_props(self):
         '''
@@ -41,6 +36,18 @@ class Block():
         returns None if no prop is found.
         '''
         return None
+
+    def remove_prop_by_name(self, name):
+        '''
+        Removes the property within the list
+        '''
+        # Gets ths removed propr, None if not present
+        removed_prop = self.contains_prop(name)
+
+        # Removing the prop
+        if(removed_prop == None):
+            return
+        self._props.remove(removed_prop)
 
     def contains_prop(self, name):
         """
@@ -70,18 +77,12 @@ class Block():
             # Swaps the values
             current_prop.set_value(prop.get_value())
 
-    def get_name(self):
-        '''
-        Returns the name of the following block.
-        '''
-        return self._name
-
     def __str__(self):
         """
         Returns the block as a string
         with it's name and properties.
         """
-        return "Block Name is " + self._name + " : " + str(self._props)
+        return "Block Name is " + str(self._names) + " : " + str(self._props)
 
     def __repr__(self):
         '''

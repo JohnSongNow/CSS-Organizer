@@ -67,7 +67,11 @@ def export_CSS_files(dir_name, pages):
                       + '.css', 'w') as f:
                 # Writing each block
                 for block in page.get_blocks():
-                    f.write(block.get_name() + "{ \n")
+                    # Writing each name in the block
+                    for name in block.get_names():
+                        f.write(name)
+                        f.write(' ')
+                    f.write("{\n")
 
                     # Writing each prop
                     for prop in block.get_props():
@@ -103,7 +107,7 @@ def lines_to_page(name, lines):
     for line in lines:
         # Replacing tabs
         line = line.lstrip()
-
+        line = line.rstrip()
 
         # Checking if we've started or ended a new block
         if('{' in line or '}' in line):
@@ -111,6 +115,7 @@ def lines_to_page(name, lines):
             # If we have a new block add it
             if(in_block):
                 line = line.replace('{', '')
+                line = line.rstrip()
                 new_page.add_block(Block(line, []))
             else:
                 in_block = False
@@ -171,4 +176,4 @@ def load_options(file_path):
         options[lines[0]] = lines[1]
     return options
 
-organize_files(['expected-test', 'initial-test'], 'test/')
+organize_files(['expected-test', 'initial-test', 'multitag-test'], 'test/')
