@@ -60,6 +60,12 @@ class Property():
     def get_type(self):
         return
 
+    def organize(self):
+        '''
+        Organizes the prop by the wanted options.
+        '''
+        return
+
     def __str__(self):
         """
         Returns the a str representing the property

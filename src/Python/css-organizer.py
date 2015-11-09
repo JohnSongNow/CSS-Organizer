@@ -23,6 +23,9 @@ def organize_files(file_names, file_path):
     # Importing the CSS Pages
     pages = import_CSS_files(file_names, file_path)
 
+    # Organizes the CSS pages
+    pages = organize_pages(pages, options)
+
     # Exporting the CSS Pages
     export_CSS_files(file_path, pages)
 
@@ -84,14 +87,6 @@ def export_CSS_files(dir_name, pages):
             print('Error exporting ' + page.get_name() + '.css')
 
 
-def alter_tabs(tabs, step):
-    '''
-    '''
-
-
-    return result
-
-
 def lines_to_page(name, lines):
     '''
     Returns a page object of the following
@@ -142,18 +137,9 @@ def page_to_lines(file_name, dir_location):
     pass
 
 
-def add_CSS_File(file_names, file_path=''):
-    '''
-    (Str, Str) -> NoneType
-    Adds a CSS file into the existing PAGES list.
-    Calls importCSSPages while not reseting our
-    current pages.
-    '''
-    import_CSS_files(file_name, file_path, False)
-
-
 def load_options(file_path):
     """
+    (Str) -> NoneType
     Loads the options from the text file into
     the options DICT. Note that if no options file
     is found a text file will be created in the dir
@@ -175,5 +161,28 @@ def load_options(file_path):
         lines = line.split(':')
         options[lines[0]] = lines[1]
     return options
+
+
+def organize_pages(pages, options):
+    '''
+    ([Pages], {Str : Obj}) -> Pages
+    Organizes each of the indiviudal pages based
+    on the options given.
+    '''
+    # Organizes each page
+    for page in pages:
+        page.organize(options)
+    return pages
+
+
+def add_CSS_File(file_names, file_path=''):
+    '''
+    (Str, Str) -> NoneType
+    Adds a CSS file into the existing PAGES list.
+    Calls importCSSPages while not reseting our
+    current pages.
+    '''
+    import_CSS_files(file_name, file_path, False)
+
 
 organize_files(['expected-test', 'initial-test', 'multitag-test'], 'test/')

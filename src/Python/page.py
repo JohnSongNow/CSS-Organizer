@@ -52,9 +52,13 @@ class Page():
         """
         return 'Page(' + self._name + ')' + str(self._blocks)
 
-    def organize(self):
+    def organize(self, options):
         """
+        Organizes the page by organizing the blocks.
+        Takes in an option dict and orders them.
         """
+        for block in self._blocks:
+            block.organize(options)
 
     def is_valid(self):
         """

@@ -77,6 +77,14 @@ class Block():
             # Swaps the values
             current_prop.set_value(prop.get_value())
 
+    def organize(self, options):
+        '''
+        Organizes the block by organizing the props within.
+        Takes in an option dict and orders them.
+        '''
+        for prop in self._props:
+            prop.organize()
+
     def __str__(self):
         """
         Returns the block as a string
