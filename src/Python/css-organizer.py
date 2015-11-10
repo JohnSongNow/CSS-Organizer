@@ -63,28 +63,16 @@ def export_CSS_files(dir_name, pages):
     tab_num = 0
     tabs = ''
 
-    for page in pages:
+    for key, value in pages.items():
         try:
             # Writing the file
-            with open(dir_name + page.get_name() + '-finale'
-                      + '.css', 'w') as f:
-                # Writing each block
-                for block in page.get_blocks():
-                    # Writing each name in the block
-                    for name in block.get_names():
-                        f.write(name)
-                        f.write(' ')
-                    f.write("{\n")
-
-                    # Writing each prop
-                    for prop in block.get_props():
-                        f.write('\t' + prop.get_value() +  '\n')
-
-                    f.write("} \n")
-                    f.write("\n")
+            with open(dir_name + key + '-finale' + '.css', 'w') as f:
+                # Writing out the line
+                for line in value:
+                    f.write(line)
                 f.close()
         except FileNotFoundError:
-            print('Error exporting ' + page.get_name() + '.css')
+            print('Error exporting ' + key + '.css')
 
 
 def lines_to_page(name, lines):
@@ -124,17 +112,40 @@ def lines_to_page(name, lines):
             prop_list = line.split(':')
             new_prop = Property(prop_list[0], prop_list[1].lstrip())
             new_page.get_last_block().add_prop(new_prop)
-
     return new_page
 
 
-def page_to_lines(file_name, dir_location):
+def page_to_lines(pages, options):
     '''
-    (Str) -> NoneType
+    ([Page]) -> dict(Str : [Str])
     Changes the page object back into a file and write it
     into the directory
     '''
-    pass
+    # Dict for lines
+    lines = dict()
+
+    for page in pages:
+        # Temp storage for the lines
+        temp_page = []
+        # Setting the name
+        lines[page.get_name()] = temp_page
+
+        # Writing each block
+        for block in page.get_blocks():
+            # Writing each name in the block
+            for name in block.get_names():
+
+                temp_page.append(name)
+                temp_page.append(' ')
+            temp_page.append("{\n")
+
+            # Writing each prop
+            for prop in block.get_props():
+                temp_page.append('\t' + prop.get_value() +  '\n')
+
+            temp_page.append("} \n")
+            temp_page.append("\n")
+    return lines
 
 
 def load_options(file_path):
@@ -172,6 +183,8 @@ def organize_pages(pages, options):
     # Organizes each page
     for page in pages:
         page.organize(options)
+    # Transforming the pages into lines
+    pages = page_to_lines(pages, options)
     return pages
 
 
