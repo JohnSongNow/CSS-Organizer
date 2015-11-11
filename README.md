@@ -2,6 +2,7 @@
 CSS-Organizer is a organization script used for organizing CSS files based on a variety of commonly used conventions such as block, properties and alphabetical order.
 CSS-Organizer is fully customizable with a wide variety of options such as indenting, minmizing files, and can be easily be implemented as a script for any website.
 
+
 Customization is done with a text file called **Options.txt** which can be generated and saved. For a more detailed guide on how to use **Options.txt** look below.
 
 ### Python (Recommended)
