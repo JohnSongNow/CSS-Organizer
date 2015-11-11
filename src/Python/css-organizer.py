@@ -1,8 +1,14 @@
+# Used for python executable
+#!/usr/bin/python
+import os
+import sys
+
+import traceback
 from property import *
 from block import *
 from page import *
 
-import traceback
+
 
 
 FILE_LIMIT = 25
@@ -197,5 +203,14 @@ def add_CSS_File(file_names, file_path=''):
     '''
     import_CSS_files(file_name, file_path, False)
 
-
 organize_files(['expected-test', 'initial-test', 'multitag-test'], 'test/')
+
+# If we have invalid argurments
+if len(sys.argv) > 10:
+    print('Arguments are not valid')
+else:
+    # Parse the argument
+    print(sys.argv[1])
+
+    # Calling file organization
+    # organize_files(file_names, file_dir, organize_style)
