@@ -30,6 +30,10 @@ CSS-Organizer
     - Indent children blocks
   - Min (Makes the file minimlistic)
 
+> python CSS-Organizer a
+
+> python CSS-Organizer b
+
 # Default Blocks
 By default CSS organizer organizes it by blocks as the following
 
