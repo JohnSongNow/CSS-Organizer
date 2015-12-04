@@ -1,6 +1,7 @@
 # Used for python executable
 #!/usr/bin/python
 import os
+import glob
 import sys
 
 import traceback
@@ -14,7 +15,7 @@ from page import *
 FILE_LIMIT = 25
 FILE_SIZE_LIMIT = 5000
 
-def organize_files(file_names, file_path):
+def organize_files(file_names):
     '''
     ([Str], Str) -> NoneType
     Imports CSS files and exports an organized
@@ -24,19 +25,19 @@ def organize_files(file_names, file_path):
     pages = []
 
     # Importing the options
-    options = load_options(file_path)
+    options = load_options()
 
     # Importing the CSS Pages
-    pages = import_CSS_files(file_names, file_path)
+    pages = import_CSS_files(file_names)
 
     # Organizes the CSS pages
     pages = organize_pages(pages, options)
 
     # Exporting the CSS Pages
-    export_CSS_files(file_path, pages)
+    export_CSS_files(pages)
 
 
-def import_CSS_files(file_names, file_path='', reset=True):
+def import_CSS_files(file_names, reset=True):
     '''
     ([Str], Str) -> NoneType
     Imports the CSS PAGES in a directory into
@@ -44,12 +45,11 @@ def import_CSS_files(file_names, file_path='', reset=True):
     cleared before imported.
     '''
     PAGES = []
-
     # Reading and converting each file into a Page Object
     for file_name in file_names:
         try:
             # Reading files
-            with open(file_path + file_name + '.css') as f:
+            with open(file_name + '.css') as f:
                 current_lines = f.read().splitlines()
                 # Changing to pages
                 PAGES.append(lines_to_page(file_name, current_lines))
@@ -59,7 +59,7 @@ def import_CSS_files(file_names, file_path='', reset=True):
     return PAGES
 
 
-def export_CSS_files(dir_name, pages):
+def export_CSS_files(pages, dir_name=''):
     '''
     ([Str], Str) -> NoneType
     Transforms the current Page Objects into
@@ -154,7 +154,7 @@ def page_to_lines(pages, options):
     return lines
 
 
-def load_options(file_path):
+def load_options():
     """
     (Str) -> NoneType
     Loads the options from the text file into
@@ -167,7 +167,7 @@ def load_options(file_path):
     current_lines = []
     try:
         # Reading files
-        with open(file_path + 'options.txt') as f:
+        with open( + 'options.txt') as f:
             current_lines = f.read().splitlines()
             # Changing to pages
             f.close()
@@ -194,23 +194,24 @@ def organize_pages(pages, options):
     return pages
 
 
-def add_CSS_File(file_names, file_path=''):
-    '''
-    (Str, Str) -> NoneType
-    Adds a CSS file into the existing PAGES list.
-    Calls importCSSPages while not reseting our
-    current pages.
-    '''
-    import_CSS_files(file_name, file_path, False)
+organize_files(['expected-test', 'initial-test', 'multitag-test'])
 
-organize_files(['expected-test', 'initial-test', 'multitag-test'], 'test/')
-
+'''
 # If we have invalid argurments
-if len(sys.argv) > 10:
-    print('Arguments are not valid')
+if len(sys.argv) > 10 or len(sys.argv) < 2:
+    print('Invalid Arguments')
 else:
     # Parse the argument
+    print(sys.argv[0])
     print(sys.argv[1])
 
+    file_names = []
+    # If the second args wants the whole page
+    if(sys.argv[1].lower() == 'a'):
+        file_names = glob.glob(os.getcwd() + '/*.css')
+
+    print(os.getcwd() + '/*.css')
+    print(file_names)
     # Calling file organization
-    # organize_files(file_names, file_dir, organize_style)
+    organize_files(file_names, os.getcwd())
+'''
