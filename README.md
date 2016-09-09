@@ -26,13 +26,16 @@ By default CSS-Organizer organizes it by blocks as the following
 5. Animation
 6. Misc
 
-All these blocks are organized with a inner text file which is editable called default.txt, which takes into account how many blocks there and how specific properties within these blocks are organized. By default they are general convention such as **Width** before **Height** in the display block, all other unknown properties are sorted by alphabetical order.
+All these blocks are organized with a inner text file which is editable called default.txt, which takes into account how many blocks there and how specific properties within these blocks are organized. The text file controls the placement and the values of the above rules, e.g. a general convention is that the rule **Width** before **Height** in the display block, all other unknown properties are sorted by alphabetical order.
 
 # Complete options
 
-- ORDER: Block / Length/ Random/ Alpha
+Below are the options along with their default values
+
+- RECURSIVE: False
+- ORDER: (default) Block / Length/ Random/ Alpha
 - BLOCKTABS:True
 - ORDER-BY-NAME:True
 - DYNAMIC-TABBING:True
 
-For a complete list of options please visit [CSS-Organizer API](johnsong.science/projects/CSS_Organizer, "CSS-Organizer API")
+For a complete list of options please visit [CSS-Organizer API](johnsong.me/projects/CSS_Organizer, "CSS-Organizer API")
