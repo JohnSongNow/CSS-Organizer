@@ -1,0 +1,13 @@
+{
+  "position": [
+    "position", "top", "bottom", "left", "right",
+    "margin", "margin-up", "margin-bottom", "margin-left", 
+    "margin-right", "padding", "padding-up", "padding-bottom", "padding-left", "padding-right", "float","vertial-align"  
+  ],
+  "display": ["width", "height", "max-width", "max-height", "background", "background-image", "overflow", "z-index"],
+  "style" : ["list-style"],
+  "font": ["text-align", "font-family", "font-size"],
+  "colour": ["colour", "rgb", "rgba"],
+  "animation": [],
+  "misc": ["you can add your own columns in this misc or even add"]
+}
