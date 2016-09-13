@@ -1,0 +1,25 @@
+{
+	"options" : {
+		"alphabetical" : true,
+		"hirearchy-tabbing" : true,
+		"minimialistic" : true,
+		"property-order" : "similar",
+		"select-order" : "similar",
+		"safe" : false
+	},
+
+	"block-order" : {
+		"order" : ["position", "background", "box", "font", "animation", other],
+		"animation" : [],
+		"background" : [],
+		"box" : ["width", "height", "padding"],
+		"font" : ["font-family", "font", "font-size", "font-weight"],
+		"other" : [],
+		"position" : []
+		
+	},
+	"type" : {
+		"property-order" : ["similar", "alphabetical", "none"],
+		"select-order" : ["similar", "alphabetical", "none"]
+	}
+}

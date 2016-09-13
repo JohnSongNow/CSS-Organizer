@@ -1,0 +1,513 @@
+@font-face {
+    font-family: cffont;
+    src: url(cffont.ttf);
+}
+
+/* Scrollbar */
+/*::-webkit-scrollbar {width: 10px; height: 15px; background:inherit;}
+::-webkit-scrollbar-track-piece:vertical {border-left:10px solid #FFAF60;}
+::-webkit-scrollbar-thumb:vertical {height: 50px; border-left:10px solid #C16000;}*/
+
+/* Select */
+::selection {
+	background:#C2CDF5;
+	color:#071835;
+}
+
+html,body{
+	margin:0;
+	padding:0;
+	min-width:800px;
+	background-color:white;
+	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+}
+
+body {
+	overflow: auto;
+	overflow-x:hidden;
+}
+
+/*For Navigation stuff*/
+.nav-head{
+	height:50px;
+}
+
+/*Button to Scroll to Top*/
+#scrollToTop {
+	position: fixed;
+    bottom: 10px;
+    left: 10px;
+	display: none;
+	width: 50px;
+    height: 50px;
+	
+	opacity:.5;
+}
+
+#header{
+	background-color:black;
+	width:100%;
+	background: url("img/362410.jpg");
+	background-size: cover;
+}
+
+/*Header*/
+#header video {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	min-width: 100%;
+	min-height: 100%;
+
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	transform: translateX(-50%) translateY(-50%);
+	background-size: cover;
+}
+
+
+#header #countdown1{
+	font-size:25px;
+}
+
+#header #countdown{
+	color:white;
+	padding: 10% 0;
+	position:absolute;
+	bottom:10%;
+	margin:0;
+	left:0;
+	right:0;
+	z-index:80;
+}
+
+#header #countdown h2{
+	color:white;
+}
+
+/* Banner */
+#header #banner {
+	width:100%;
+	height:100%;
+	/*background-color:#1A2434;*/
+	text-align:center;
+	position:relative;
+}
+
+
+#header #banner img{
+	height:350px;
+}
+
+#header .bannerimg{
+	position:absolute;
+	top:20%;
+	margin-left: auto;
+	margin-right: auto;
+	left:0;
+	right:0;
+	margin-bottom:0;
+	padding:0;
+	height:350px;
+}
+
+#header .downarrow{
+	position:absolute;
+	z-index:85;
+	bottom:5%;
+	left:48%;
+}
+
+#header .downarrow img{
+	width:50px;
+	opacity:.20;
+	
+	transition: all .9s ease;
+}
+
+#header .downarrow img:hover{
+	opacity:1;
+}
+
+
+/*Navigation*/
+.navigator {
+	display:block;
+	z-index: 99;
+	
+	width:100%;
+	height:45px;
+	background-color:#FFFFFF;
+}
+
+
+.navigator .logo-img{
+	display:inline-block;
+	
+	width:20px;
+	height:20px;
+	
+	margin-top:10px;
+	padding-right:50px;
+	
+	/*Change color if you want, for the image logo circle*/
+
+	
+	border-radius: 500px;
+	-webkit-border-radius: 500px;
+	-moz-border-radius: 500px;
+}
+
+.navigator #nav{
+	text-align:center;
+	display:block;
+	
+	/*Due to image*/
+
+	font-family: 'Arial Rounded MT Bold', 'Helvetica Rounded', Arial, sans-serif;
+	font-size: 30px;
+	min-width:800px;
+
+}
+
+.navigator #nav a{
+	display: inline-block;
+	height: 27px;
+	width: 8%;
+	
+	color:#585858;
+
+	margin: 0px 0px 0 0;
+	font-size:18px;
+	text-decoration: none;
+
+	padding: 15px 2% 0 2%;
+	
+	text-align: center;
+	
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+
+}
+
+.navigator #nav a:hover{
+	color:#2E2E2E;
+	border-bottom: 3px solid #2E9AFE;
+	background-color:#E6E6E6;
+}
+
+/*Currently active div*/
+.navigator #nav .active{
+	color:#000000;
+	border-bottom: 3px solid #2E9AFE;
+	background-color:#F2F2F2;
+}
+
+
+
+
+
+/* Contents */
+h1{
+	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	font-size: 40px;
+
+	margin-bottom:0;
+	color:#484848;
+}
+
+#h1-empty{
+	height:100px;
+}
+
+h2{
+	font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+	font-size: 30px;
+	color:#484848;
+	margin-bottom:5px;
+}
+
+
+
+/*Contents - Games*/
+#games-content{
+	top:15%;
+	width:100%;
+}
+
+
+#games-content table{
+	margin:0;
+	width:100%;
+	border-spacing:0;
+	border-collapse: collapse;
+}
+
+#games-content table tr{
+	background-color: #F7F7F7;
+}
+
+#games-content table tr:nth-child(even) {
+    background-color: #F7F7F7;
+	text-align:right;
+}
+
+#games-content .DivideTheTiles{
+	width:100%;
+	height:500px;
+	background: url(img/divide.png) 50% 50% no-repeat;
+	display: inline-block;
+	background-size: cover;
+}
+
+#games-content .ProjectNeon{
+	width:100%;
+	height:500px;
+	background: url(img/neon.png) 50% 50% no-repeat;
+	display: inline-block;
+	background-size: cover;
+}
+
+#games-content .game-description{
+	padding-left:10%;
+	padding-right:10%;
+	
+	font-size: 15px;
+	color:#000000;
+}
+
+#games-content .game-description img{
+	width:200px;
+	height:60px;
+	padding:10px;
+	opacity:.7;
+	
+	transition: all .6s ease;
+}
+
+#games-content .game-description img:hover{
+	opacity:1;
+}
+
+#games-content table td{
+	width:15%;
+}
+
+
+/*Contents - About*/
+#about-content{
+	padding-top:50px;
+	margin: 0 auto;
+	min-width: 300px;
+	/*background-color:black;*/
+	padding-bottom:50px;
+}
+
+#about-content h1{
+	margin-left:15%;
+}
+
+#about-content table{
+	width:60%;
+	text-align:center;
+	padding:0;
+	overflow:hidden;
+	table-layout:fixed;
+}
+
+#about-content table img{
+	width:150px;
+	margin: 10px;
+	border:2px solid #42516B;
+	box-shadow: 0px 0px 20px rgba(0,0,0,.5);
+	opacity:.6;
+	
+	transition: all 2s ease;
+}
+
+#about-content table img:hover{
+	opacity:1;
+}
+
+#about-content .abnames{
+	font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+	font-size: 18px;
+	text-transform: uppercase;
+	color:#808080;
+	padding:0;
+}
+
+#about-content .bottomed{
+	position:relative;
+	bottom:0;
+}
+
+/*Parallax thing*/
+#speechdiv {
+	width: 100%;
+	height:400px;
+	background: url(img/362410.jpg) no-repeat;
+	background-size: cover;
+}
+
+/* content centering styles */
+#speechdiv .content {
+    display:table;
+	width:100%;
+    min-height:100%;
+    overflow:hidden;
+	color:white;
+	text-align:center;
+}
+
+#speechdiv .content table{
+	width:60%;
+	height:400px;
+	color:white;
+	font-size:20px;
+	
+	padding:20px;
+	text-align:center;
+
+}
+
+#speechdiv .content img{
+	width:200px;
+	height:200px;
+	border-radius: 300px;
+	border: 3px solid #BADA22;
+}
+
+
+
+/*Contents - Support*/
+#support-content{
+	width:70%;
+	margin: 0 auto;
+	display: block;
+	min-width: 300px;
+}
+
+/*
+#supportback{
+	background-image: url(img/supportbg.gif);
+	background-repeat: no-repeat;
+	background-size: cover;
+	transition: all 0.5s ease;
+	background-position:center center;
+}
+*/
+
+#supportback{
+	background-color:#F2F2F2;
+}
+
+#support-DavidFrame{
+	position:relative;
+	
+	background-image: url(img/David.png);
+	background-repeat: no-repeat;
+	background-position: 0px 50px; 
+	height:600px;
+	
+	left:0px;
+	padding:0px;
+	margin:0px;
+	
+	width:100%;
+	
+	transition: all 0.5s ease;
+}
+
+#support-DavidFrame:hover{
+	background-position: -50px 50px; 
+}
+
+
+#circle1{
+	position:relative;
+	top:150px;
+	left:480px;
+	width: 50px;
+    height: 50px;
+    background: #59CEE5;
+	border-radius: 50%;
+}
+
+#circle2{
+	position:relative;
+	top:80px;
+	left:520px;
+	width: 100px;
+    height: 100px;
+    background: #93E1F0;
+	border-radius: 50%;
+}
+
+#circle3{
+	position:relative;
+	top:-10px;
+	left:560px;
+	
+	margin-right:60%;
+	height:auto;
+	padding-bottom:50px;
+	
+    background: #C8F3FB;
+	border-radius: 20%;
+}
+
+.mascot{
+	position: absolute;
+	bottom:0;
+	right:0;
+	
+	font-size:2vw;
+}
+
+
+
+/*Footer*/
+#footerDiv{
+	background-color:#242424;
+	width:100%;
+}
+
+#footerDiv table{
+	width:100%;
+	color:white;
+	padding:20px;
+	text-align:center;
+	display:block;
+}
+
+#footerDiv table td{
+	min-width:20%;
+}
+
+#footerDiv h3{
+	font-family: Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif;
+	color:white;
+	padding-left:10px;
+}
+
+#footerDiv .social img{
+	width:60px;
+	padding:5px;
+	
+	-o-transition:.5s;
+	-ms-transition:.5s;
+	-moz-transition:.5s;
+	-webkit-transition:.5s;
+	transition:.5s;
+}
+
+#footerDiv img:hover{
+	opacity:.5;
+}
+
+#footerDiv .social p{
+	font-size:10px;
+}

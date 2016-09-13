@@ -1,16 +1,10 @@
 # Used for python executable
 #!/usr/bin/python
-import os
-import glob
-import sys
+import json
 
-import traceback
 from property import *
 from block import *
 from page import *
-
-
-
 
 FILE_LIMIT = 25
 FILE_SIZE_LIMIT = 5000
@@ -91,6 +85,7 @@ def lines_to_page(name, lines):
     # Making the starting variables for the loop
     new_page = Page(name, [])
     in_block = False
+    in_comment = False
 
     # Looping through the CSS lines
     for line in lines:
@@ -98,26 +93,29 @@ def lines_to_page(name, lines):
         line = line.lstrip()
         line = line.rstrip()
 
-        # Checking if we've started or ended a new block
-        if('{' in line or '}' in line):
-            in_block = not in_block
-            # If we have a new block add it
-            if(in_block):
-                line = line.replace('{', '')
-                line = line.rstrip()
-                new_page.add_block(Block(line, []))
-            else:
-                in_block = False
         # Empty line
-        elif(line == ''):
+        if(line == ''):
             pass
-        # If we're closing a block
         else:
-            # Splitting and adding the prop
-            line = line.replace(';', '')
-            prop_list = line.split(':')
-            new_prop = Property(prop_list[0], prop_list[1].lstrip())
-            new_page.get_last_block().add_prop(new_prop)
+            else:
+                # Else if we are not in a comment block and non empy line
+                # Checking if we've started or ended a new block
+                if('{' == line[0] or '}' == line[0]):
+                    in_block = not in_block
+                    # If we have a new block add it
+                    if(in_block):
+                        line = line.replace('{', '')
+                        line = line.rstrip()
+                        new_page.add_block(Block(line, []))
+                    else:
+                        in_block = False
+                # If we're closing a block
+                else:
+                    # Splitting and adding the prop
+                    line = line.replace(';', '')
+                    prop_list = line.split(':')
+                    new_prop = Property(prop_list[0], prop_list[1].lstrip())
+                    new_page.get_last_block().add_prop(new_prop)
     return new_page
 
 
@@ -156,27 +154,24 @@ def page_to_lines(pages, options):
 
 def load_options():
     """
-    (Str) -> NoneType
+    (Str) -> {Dict}
     Loads the options from the text file into
     the options DICT. Note that if no options file
     is found a text file will be created in the dir
     of this file.
     """
-    # Resetting out previous options
     options = dict()
-    current_lines = []
+    # Resetting out previous options
     try:
-        # Reading files
-        with open( + 'options.txt') as f:
-            current_lines = f.read().splitlines()
-            # Changing to pages
-            f.close()
-    except:
-        print('options.txt' + ' does not exist')
+        f = open('options.txt', 'r')
+        options_str = ''
+        for line in f:
+            options_str += line
 
-    for line in current_lines:
-        lines = line.split(':')
-        options[lines[0]] = lines[1]
+        options = json.loads(options_str)
+    except ValueError:
+        print('Loading Options Failed')
+
     return options
 
 
@@ -194,7 +189,8 @@ def organize_pages(pages, options):
     return pages
 
 
-organize_files(['expected-test', 'initial-test', 'multitag-test'])
+organize_files(['../test/expected-test', '../test/initial-test',
+                '../test/multitag-test', '../test/danny-test'])
 
 '''
 # If we have invalid argurments
