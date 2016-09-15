@@ -1,4 +1,7 @@
 {
+  "order":[
+    "position", "display", "style", "font", "colour", "animation", "misc"
+  ],
   "position": [
     "position", "top", "bottom", "left", "right",
     "margin", "margin-up", "margin-bottom", "margin-left", 

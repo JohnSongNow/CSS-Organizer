@@ -1,5 +1,5 @@
 from block import *
-
+from fillerBlock import *
 
 class Page():
     """
@@ -30,7 +30,6 @@ class Page():
         self._blocks.append(block)
         self._length += 1
 
-
     def set_blocks(self, blocks):
         '''
         Sets the block of the following page.
@@ -52,13 +51,13 @@ class Page():
         """
         return 'Page(' + self._name + ')' + str(self._blocks)
 
-    def organize(self, options):
+    def organize(self, options, order):
         """
         Organizes the page by organizing the blocks.
         Takes in an option dict and orders them.
         """
         for block in self._blocks:
-            block.organize(options)
+            block.organize(options, order)
 
     def is_valid(self):
         """

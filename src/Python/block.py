@@ -77,13 +77,28 @@ class Block():
             # Swaps the values
             current_prop.set_value(prop.get_value())
 
-    def organize(self, options):
+    def organize(self, options, order):
         '''
         Organizes the block by organizing the props within.
         Takes in an option dict and orders them.
         '''
         for prop in self._props:
             prop.organize()
+
+        new_prop_list = []
+
+        # Replace with a lamba statement later
+        for key in order["order"]:
+            for value in order[key]:
+                for prop in self._props:
+                    if(value == prop.get_name()):
+                        new_prop_list.append(prop)
+
+                        print(str(new_prop_list))
+                        break
+
+        self._props = new_prop_list
+
 
     def __str__(self):
         """

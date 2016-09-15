@@ -4,6 +4,7 @@ import json
 
 from property import *
 from block import *
+from fillerBlock import *
 from page import *
 
 FILE_LIMIT = 25
@@ -16,16 +17,19 @@ def organize_files(file_names):
     verison of those pages.
     '''
     options = dict()
+    order = dict()
     pages = []
 
     # Importing the options
     options = load_options()
 
+    order = load_order()
+
     # Importing the CSS Pages
     pages = import_CSS_files(file_names)
 
     # Organizes the CSS pages
-    pages = organize_pages(pages, options)
+    pages = organize_pages(pages, options, order)
 
     # Exporting the CSS Pages
     export_CSS_files(pages)
@@ -85,7 +89,10 @@ def lines_to_page(name, lines):
     # Making the starting variables for the loop
     new_page = Page(name, [])
     in_block = False
-    in_comment = False
+    started_filler = False
+
+    # Starter filler block
+    new_page.add_block(FillerBlock([]))
 
     # Looping through the CSS lines
     for line in lines:
@@ -97,25 +104,28 @@ def lines_to_page(name, lines):
         if(line == ''):
             pass
         else:
-            else:
-                # Else if we are not in a comment block and non empy line
-                # Checking if we've started or ended a new block
-                if('{' == line[0] or '}' == line[0]):
-                    in_block = not in_block
-                    # If we have a new block add it
-                    if(in_block):
-                        line = line.replace('{', '')
-                        line = line.rstrip()
-                        new_page.add_block(Block(line, []))
-                    else:
-                        in_block = False
-                # If we're closing a block
+            # Else if we are not in a comment block and non empy line
+            # Checking if we've started or ended a new block
+            if('{' == line[len(line) - 1] or '}' == line[0]):
+                in_block = not in_block
+
+                # If we have a new block add it
+                if(in_block):
+                    line = line.replace('{', '')
+                    line = line.rstrip()
+                    new_page.add_block(Block(line, []))
                 else:
+                    # This is a filler block after the constant block
+                    new_page.add_block(FillerBlock([]))
+            else:
+                added_line = line
+                if(in_block):
                     # Splitting and adding the prop
                     line = line.replace(';', '')
                     prop_list = line.split(':')
-                    new_prop = Property(prop_list[0], prop_list[1].lstrip())
-                    new_page.get_last_block().add_prop(new_prop)
+                    added_line = Property(prop_list[0], prop_list[1].lstrip())
+                # Adding the new line
+                new_page.get_last_block().add_prop(added_line)
     return new_page
 
 
@@ -136,19 +146,25 @@ def page_to_lines(pages, options):
 
         # Writing each block
         for block in page.get_blocks():
-            # Writing each name in the block
-            for name in block.get_names():
+            # Regular property block
+            if(type(block) is Block):
+                # Writing each name in the block
+                for name in block.get_names():
+                    temp_page.append(name)
+                    temp_page.append(' ')
+                temp_page.append("{\n")
 
-                temp_page.append(name)
-                temp_page.append(' ')
-            temp_page.append("{\n")
+                # Writing each prop
+                for prop in block.get_props():
+                    temp_page.append('\t' + prop.get_name() + ': '
+                                     + prop.get_value() +  '\n')
 
-            # Writing each prop
-            for prop in block.get_props():
-                temp_page.append('\t' + prop.get_value() +  '\n')
-
-            temp_page.append("} \n")
-            temp_page.append("\n")
+                temp_page.append("} \n")
+                temp_page.append("\n")
+            else:
+                for line in block.get_lines():
+                    temp_page.append(line)
+                    temp_page.append("\n")
     return lines
 
 
@@ -175,7 +191,30 @@ def load_options():
     return options
 
 
-def organize_pages(pages, options):
+def load_order():
+    """
+    (Str) -> {Dict}
+    Loads the options from the text file into
+    the options DICT. Note that if no options file
+    is found a text file will be created in the dir
+    of this file.
+    """
+    order = dict()
+    # Resetting out previous options
+    try:
+        f = open('order.txt', 'r')
+        options_str = ''
+        for line in f:
+            options_str += line
+
+        order = json.loads(options_str)
+    except ValueError:
+        print('Loading Order Failed')
+
+    return order
+
+
+def organize_pages(pages, options, order):
     '''
     ([Pages], {Str : Obj}) -> Pages
     Organizes each of the indiviudal pages based
@@ -183,14 +222,16 @@ def organize_pages(pages, options):
     '''
     # Organizes each page
     for page in pages:
-        page.organize(options)
+        page.organize(options, order)
     # Transforming the pages into lines
     pages = page_to_lines(pages, options)
     return pages
 
+# This is purely to run the tests
+organize_files(['../test/expected-test'])
 
-organize_files(['../test/expected-test', '../test/initial-test',
-                '../test/multitag-test', '../test/danny-test'])
+#organize_files(['../test/expected-test', '../test/initial-test',
+#                '../test/multitag-test', '../test/danny-test'])
 
 '''
 # If we have invalid argurments
